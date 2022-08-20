@@ -11,6 +11,7 @@ const App = () => {
     confirmPassword: "",
   });
 
+  // Creating an array for form mapping
   const inputs = [
     {
       id: 1,
@@ -46,6 +47,7 @@ const App = () => {
       placeholder: "Password",
       errorMessage:
         "Password should be 8-20 characters and include at least 1 letter, 1 number and 1 special character!",
+      pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`,
       label: "Password ",
       required: true,
     },
@@ -56,14 +58,17 @@ const App = () => {
       placeholder: "ConfirmPassword",
       errorMessage: "Passwords don't match!",
       label: "ConfirmPassword ",
+      pattern: values.password,
       required: true,
     },
   ];
 
+  //Handling the Submit Button
   const handleSubmit = (e) => {
     e.preventDefault();
   };
 
+  // onChange Function for input data
   const onChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
@@ -72,7 +77,7 @@ const App = () => {
   return (
     <div className="app">
       <form className="form" onSubmit={handleSubmit}>
-        <h1 className="title-text">Form Validation</h1>
+        <h1 className="title-text">Register</h1>
         {inputs.map((input) => (
           <FormInput
             key={input.id}
